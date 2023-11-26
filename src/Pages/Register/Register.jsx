@@ -12,6 +12,10 @@ const Register = () => {
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [bloodGroup, setBloodGroup] = useState("Select");
 
+
+
+
+
   useEffect(() => {
     fetch("districts.json")
       .then((res) => res.json())

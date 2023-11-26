@@ -17,6 +17,8 @@ import AllUsers from "./Components/Dashboard/AllUsers/AllUsers";
 import ContentManageMent from "./Components/Dashboard/ContentManagement/ContentManageMent";
 import AdminHome from "./Components/Dashboard/AdminHOme/AdminHome";
 import UserHome from "./Components/Dashboard/UserHome/UserHome";
+import MyBloodDonation from "./Components/Dashboard/MyDonation/MyBloodDonation";
+import DonationReq from "./Components/Dashboard/DonationReq/DonationReq";
 
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
@@ -62,6 +64,12 @@ const router = createBrowserRouter([
       },{
         path:'userhome',
         element:<UserHome></UserHome>
+      },{
+        path:'bloodDonationRequest',
+        element:<MyBloodDonation></MyBloodDonation>
+      },{
+        path:'donationReq',
+        element:<DonationReq></DonationReq>
       }
     ]
   }
