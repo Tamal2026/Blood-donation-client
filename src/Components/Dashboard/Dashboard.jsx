@@ -8,18 +8,25 @@ const Dashboard = () => {
     <div className="flex">
       <div className="w-64 min-h-full bg-orange-400 font-bold text-white">
         <ul className="menu">
-          {isAdmin && (
+          {isAdmin ? (
             <>
+              <li>
+                <NavLink to="/dashboard/adminhome">Admin Home</NavLink>
+              </li>
               <li>
                 <NavLink to="/dashboard/allusers">All Users</NavLink>
               </li>
               <li>
-            <NavLink to="/dashboard/content">Content ManageMent</NavLink>
-          </li>
+                <NavLink to="/dashboard/content">Content Management</NavLink>
+              </li>
               <li>
-                <NavLink to="/dashboard/statictics">Statistics</NavLink>
+                <NavLink to="/dashboard/statistics">Statistics</NavLink>
               </li>
             </>
+          ) : (
+            <li>
+              <NavLink to="/dashboard/userhome">Donor Home</NavLink>
+            </li>
           )}
           <li>
             <NavLink to="/dashboard/alluserOption">For all User options</NavLink>

@@ -8,23 +8,22 @@ import UseAxiosPublic from "../../Hooks/useAxiosPublic/UseAxiosPublic";
 const Register = () => {
   const navigate = useNavigate();
   const [districts, setDistricts] = useState([]);
-  const [upzilas, setUpazilas] = useState([]);
+  const [upzilas, setUpzilas] = useState([]);
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [bloodGroup, setBloodGroup] = useState("Select");
 
   useEffect(() => {
- 
     fetch("districts.json")
       .then((res) => res.json())
       .then((data) => {
         setDistricts(data);
       });
 
-  
     fetch("upzilas.json")
       .then((res) => res.json())
       .then((data) => {
-        setUpazilas(data);
+   
+        setUpzilas(data);
       });
   }, []);
 
@@ -51,12 +50,21 @@ const Register = () => {
         data.email,
         data.password,
         data.name,
-        data.bloodGroup
+        data.bloodGroup,
+        data.district, 
+        data.upzila
       );
+
       const loggedUser = result.user;
       console.log(loggedUser);
 
-      await updateUserProfile(data.name, data.bloodGroup, data.email);
+      await updateUserProfile(
+        data.name,
+        data.bloodGroup,
+        data.email,
+        data.district, 
+        data.upzila 
+      );
 
       console.log("User Updated");
 
@@ -64,6 +72,8 @@ const Register = () => {
         displayName: data.name,
         email: data.email,
         bloodGroup: data.bloodGroup,
+        district: data.district, 
+        upzila: data.upzila
       };
 
       const response = await axiosPublic.post("/users", userInfo);
@@ -162,7 +172,7 @@ const Register = () => {
                     <span className="label-text">Select Your Upazila</span>
                   </label>
                   <select
-                    {...register("upazila")}
+                    {...register("upzila")}
                     className="select select-bordered w-full max-h-150 overflow-y-auto"
                   >
                     <option value="" disabled>
