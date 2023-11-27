@@ -1,0 +1,75 @@
+[
+    {
+      "id": 1,
+      "title": "The Importance of Regular Blood Donations",
+      "content": "Regular blood donations help maintain an adequate blood supply for medical treatments...",
+      "author": "Sarah Johnson",
+      "date": "2023-01-20",
+      "tags": ["Blood Donation", "Health", "Community"],
+      "img": "https://i.ibb.co/3cbJ4cg/feat-unionquay.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Tips for a Successful Blood Donation Experience",
+      "content": "Preparing for a blood donation? Follow these tips to ensure a smooth and successful experience...",
+      "author": "Michael Anderson",
+      "date": "2023-02-05",
+      "tags": ["Blood Drive", "Volunteering", "Wellness"],
+      "img": "https://i.ibb.co/FscBbd3/Blood-donation-banner-image-1.png"
+    },
+    {
+      "id": 3,
+      "title": "The Journey of a Blood Donation: From Donor to Recipient",
+      "content": "Explore the journey of donated blood, from collection to distribution to those in need...",
+      "author": "Elena Rodriguez",
+      "date": "2023-03-15",
+      "tags": ["Donation Process", "Medical Procedures", "Community Service"],
+      "img": "https://i.ibb.co/xSRNDrk/National-Blood-Donor-Month-why-you-should-donate-blood-blog.jpg"
+    },
+    {
+      "id": 4,
+      "title": "How Blood Types Affect Donation and Transfusion",
+      "content": "Understanding blood types and their impact on donation compatibility and transfusion outcomes...",
+      "author": "Mark Thompson",
+      "date": "2023-04-02",
+      "tags": ["Blood Types", "Medical Science", "Health Education"],
+      "img": "https://i.ibb.co/bRrcfFg/blood-donation-blogs.jpg"
+    },
+    {
+      "id": 5,
+      "title": "The Role of Technology in Blood Donation Campaigns",
+      "content": "Explore how technology is enhancing blood donation campaigns and reaching a wider audience...",
+      "author": "Olivia Martin",
+      "date": "2023-05-10",
+      "tags": ["Technology", "Campaigns", "Community Outreach"],
+      "img": "https://i.ibb.co/K0btg4w/donating-blood-banner.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Community Spotlight: Blood Donors Making a Difference",
+      "content": "Highlighting the stories of community members making a positive impact through regular blood donations...",
+      "author": "David Miller",
+      "date": "2023-06-25",
+      "tags": ["Community Spotlight", "Inspiration", "Blood Heroes"],
+      "img": "https://i.ibb.co/DwYxR7z/blood-donation-blog.jpg"
+    },
+    {
+      "id": 7,
+      "title": "Blood Donation Challenges and Solutions",
+      "content": "Addressing common challenges in blood donation campaigns and proposing effective solutions...",
+      "author": "Sophia Carter",
+      "date": "2023-07-12",
+      "tags": ["Challenges", "Solutions", "Community Engagement"],
+      "img": "https://i.ibb.co/fd4yNGm/images.jpg"
+    },
+    {
+      "id": 8,
+      "title": "Celebrating World Blood Donor Day: A Global Perspective",
+      "content": "Reflecting on the significance of World Blood Donor Day and its impact worldwide...",
+      "author": "Andrew Wilson",
+      "date": "2023-08-14",
+      "tags": ["World Blood Donor Day", "Global Impact", "Celebration"],
+      "img": "https://i.ibb.co/6RJsSfW/Easy-Peasy-Blood-Type-Chart-Vitalant.jpg"
+    }
+  ]
+  

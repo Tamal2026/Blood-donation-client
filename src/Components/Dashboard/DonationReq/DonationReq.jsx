@@ -22,7 +22,10 @@ const DonationReq = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const datainfo = { ...formData };
+const userEmail = await axiosPublic.get('/users');
+
+
+    const datainfo = { ...formData , userEmail};
   
     try {
       const res = await axiosPublic.post('/bloodDonation', datainfo);
@@ -136,7 +139,7 @@ const DonationReq = () => {
                   <span className="label-text">Request Message</span>
                 </label>
                 <textarea
-                  name="reqmessage" // Fix: Update name to match state property
+                  name="reqmessage" 
                   placeholder="Write Why need and how much it needed..."
                   className="textarea textarea-bordered w-full lg:w-[800px]"
                   value={formData.reqmessage}

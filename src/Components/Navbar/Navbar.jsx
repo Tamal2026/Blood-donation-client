@@ -18,6 +18,8 @@ const Navbar = () => {
     <>
       <li><NavLink to="/">Home</NavLink></li>
       <li><NavLink to="/contactus">Contact Us</NavLink></li>
+      <li><NavLink to="/bloodDonationPublic">Donate Blood</NavLink></li>
+      <li><NavLink to="/blog">Blog</NavLink></li>
 
       {user ? (
         

@@ -19,6 +19,8 @@ import AdminHome from "./Components/Dashboard/AdminHOme/AdminHome";
 import UserHome from "./Components/Dashboard/UserHome/UserHome";
 import MyBloodDonation from "./Components/Dashboard/MyDonation/MyBloodDonation";
 import DonationReq from "./Components/Dashboard/DonationReq/DonationReq";
+import BloodDonationPublic from "./Pages/BloodDonationPublic/BloodDonationPublic";
+import Blog from "./Pages/Blog/Blog";
 
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
@@ -41,7 +43,14 @@ const router = createBrowserRouter([
       {
         path: "/contactus",
         element: <ContactUs></ContactUs>,
-      },
+      },{
+        path:'/blog',
+        element:<Blog></Blog>
+      },{
+        path:'/bloodDonationPublic',
+        element:<BloodDonationPublic
+        ></BloodDonationPublic>
+      }
     ],
     
   },
@@ -65,7 +74,7 @@ const router = createBrowserRouter([
         path:'userhome',
         element:<UserHome></UserHome>
       },{
-        path:'bloodDonationRequest',
+        path:'myBloodDonationRequest',
         element:<MyBloodDonation></MyBloodDonation>
       },{
         path:'donationReq',
