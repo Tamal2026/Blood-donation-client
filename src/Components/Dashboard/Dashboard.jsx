@@ -20,6 +20,9 @@ const Dashboard = () => {
                 <NavLink to="/dashboard/content">Content Management</NavLink>
               </li>
               <li>
+                <NavLink to="/dashboard/addblog">Add Blog</NavLink>
+              </li>
+              <li>
                 <NavLink to="/dashboard/statistics">Statistics</NavLink>
               </li>
               <li>
@@ -42,6 +45,11 @@ const Dashboard = () => {
               <li>
                 <NavLink to="/dashboard/donationReq">
                   Donation Request
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/funding">
+                 Give Funding
                 </NavLink>
               </li>
             </>

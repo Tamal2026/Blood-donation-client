@@ -12,7 +12,7 @@ const ShowBlog = ({ blog }) => {
             <p className="font-bold">Author : {author}</p>
             <p>Date : {date}</p>
             <div className="card-actions justify-end">
-              <button className="btn btn-primary">Watch</button>
+              <button className="btn btn-primary">Read Vlog</button>
             </div>
           </div>
         </div>

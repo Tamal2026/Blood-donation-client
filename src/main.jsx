@@ -14,13 +14,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import Statictics from "./Components/Dashboard/Statics/Statictics";
 import AllUsers from "./Components/Dashboard/AllUsers/AllUsers";
-import ContentManageMent from "./Components/Dashboard/ContentManagement/ContentManageMent";
 import AdminHome from "./Components/Dashboard/AdminHOme/AdminHome";
 import UserHome from "./Components/Dashboard/UserHome/UserHome";
 import MyBloodDonation from "./Components/Dashboard/MyDonation/MyBloodDonation";
 import DonationReq from "./Components/Dashboard/DonationReq/DonationReq";
 import BloodDonationPublic from "./Pages/BloodDonationPublic/BloodDonationPublic";
 import Blog from "./Pages/Blog/Blog";
+import Funding from "./Components/Dashboard/Funding/Funding";
+import AddBlog from "./Components/Dashboard/AddBlog/AddBlog";
 
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
@@ -43,45 +44,57 @@ const router = createBrowserRouter([
       {
         path: "/contactus",
         element: <ContactUs></ContactUs>,
-      },{
-        path:'/blog',
-        element:<Blog></Blog>
-      },{
-        path:'/bloodDonationPublic',
-        element:<BloodDonationPublic
-        ></BloodDonationPublic>
-      }
+      },
+      {
+        path: "/blog",
+        element: <Blog></Blog>,
+      },
+      {
+        path: "/bloodDonationPublic",
+        element: <BloodDonationPublic></BloodDonationPublic>,
+      },
     ],
-    
   },
   {
-    path:'/dashboard',
-    element:<Dashboard></Dashboard>,
-    children:[
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
       {
-        path:'statictics',
-        element:<Statictics></Statictics>
-      },{
-        path:'allusers',
-        element:<AllUsers></AllUsers>
-      },{
-        path:'content',
-        element:<ContentManageMent></ContentManageMent>
-      },{
-        path:'adminhome',
-        element:<AdminHome></AdminHome>
-      },{
-        path:'userhome',
-        element:<UserHome></UserHome>
-      },{
-        path:'myBloodDonationRequest',
-        element:<MyBloodDonation></MyBloodDonation>
-      },{
-        path:'donationReq',
-        element:<DonationReq></DonationReq>
-      }
-    ]
-  }
+        path: "statictics",
+        element: <Statictics></Statictics>,
+      },
+      {
+        path: "allusers",
+        element: <AllUsers></AllUsers>,
+      },
+
+      {
+        path: "addblog",
+        element: <AddBlog></AddBlog>,
+      },
+
+      {
+        path: "adminhome",
+        element: <AdminHome></AdminHome>,
+      },
+      {
+        path: "userhome",
+        element: <UserHome></UserHome>,
+      },
+      {
+        path: "myBloodDonationRequest",
+        element: <MyBloodDonation></MyBloodDonation>,
+      },
+      {
+        path: "donationReq",
+        element: <DonationReq></DonationReq>,
+      },
+      {
+        path: "funding",
+        element: <Funding></Funding>,
+      },
+    ],
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
