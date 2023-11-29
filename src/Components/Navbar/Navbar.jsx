@@ -22,8 +22,13 @@ const Navbar = () => {
       <li><NavLink to="/blog">Blog</NavLink></li>
 
       {user ? (
+        <>
+          <li><button onClick={handleLogout} className="btn btn-error">Logout</button></li>
+    
+          <li><NavLink to="/searchDonation">Search Donation</NavLink></li>
         
-        <li><button onClick={handleLogout} className="btn btn-error">Logout</button></li>
+        </>
+      
       ) : (
         
         <>

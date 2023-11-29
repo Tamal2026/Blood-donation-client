@@ -22,6 +22,7 @@ import BloodDonationPublic from "./Pages/BloodDonationPublic/BloodDonationPublic
 import Blog from "./Pages/Blog/Blog";
 import Funding from "./Components/Dashboard/Funding/Funding";
 import AddBlog from "./Components/Dashboard/AddBlog/AddBlog";
+import SearchDonation from "./Pages/SearchDonation/SearchDonation";
 
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path:'/searchDonation',
+        element:<SearchDonation></SearchDonation>
       },
       {
         path: "/contactus",
