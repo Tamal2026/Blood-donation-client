@@ -10,7 +10,7 @@ const Banner = () => {
             className=" rounded-lg shadow-2xl"
           />
           <div>
-            <h1 className="text-5xl font-bold">Box Office News!</h1>
+            <h1 className="text-5xl font-bold mb-6">Give the Gift of Life: Donate Blood Today!</h1>
             <div className="flex gap-6 mt">
               <Link to="/register">
                 {" "}
