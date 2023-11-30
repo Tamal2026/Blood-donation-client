@@ -10,7 +10,9 @@ const Banner = () => {
             className=" rounded-lg shadow-2xl"
           />
           <div>
-            <h1 className="text-5xl font-bold mb-6">Give the Gift of Life: Donate Blood Today!</h1>
+            <h1 className="text-5xl font-bold mb-6">
+              Give the Gift of Life: Donate Blood Today!
+            </h1>
             <div className="flex gap-6 mt">
               <Link to="/register">
                 {" "}
@@ -18,9 +20,11 @@ const Banner = () => {
                   Join Us As a Donor
                 </h1>
               </Link>
-              <h1 className="bg-emerald-600 text-white font-bold text-3xl px-3 py-1 rounded-lg">
-                Search Donors
-              </h1>
+              <Link to="/searchDonation">
+                <h1 className="bg-emerald-600 text-white font-bold text-3xl px-3 py-1 rounded-lg">
+                  Search Donors
+                </h1>
+              </Link>
             </div>
           </div>
         </div>

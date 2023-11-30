@@ -14,7 +14,7 @@ const SearchDonation = () => {
   const axiosPublic = UseAxiosPublic();
 
   useEffect(() => {
-    // Fetch data for districts
+    
     fetch("districts.json")
       .then((res) => res.json())
       .then((data) => {
@@ -24,7 +24,7 @@ const SearchDonation = () => {
         console.error("Error fetching districts:", error);
       });
 
-    // Fetch data for upazilas
+    
     fetch("upzilas.json")
       .then((res) => res.json())
       .then((data) => {
@@ -107,6 +107,7 @@ const SearchDonation = () => {
             className="select select-bordered w-full"
           >
             <option value="" disabled>
+
               Select Upazila
             </option>
             {upzilas
@@ -126,16 +127,19 @@ const SearchDonation = () => {
           Search
         </button>
       </form>
-
+      <p className="font-bold">Total Donors : {searchResults.length}</p>
       {searchResults.length > 0 && (
         <div className="mt-4">
           <h3 className="text-lg font-semibold mb-2">Search Results:</h3>
           <ul>
             {searchResults.map((result) => (
               <li key={result._id}>
-      <p>Total Donors : {searchResults.length}</p>
-               <p className="font-bold text-xl"> Blood Group: {result.bloodGroup}, District: {result.district},
-                Upazila: {result.upazila}</p>
+              
+                <p className="font-bold text-xl">
+                  {" "}
+                  Blood Group: {result.bloodGroup}, District: {result.district},
+                  Upazila: {result.upazila}
+                </p>
               </li>
             ))}
           </ul>

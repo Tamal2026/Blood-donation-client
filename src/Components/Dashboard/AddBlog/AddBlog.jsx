@@ -29,7 +29,12 @@ const AddBlog = () => {
     e.preventDefault();
 
     try {
-      const res = await axiosPublic.post("/Blogs", formData);
+      const res = await axiosPublic.post("/Blogs", {
+        ...formData,
+        // Store the HTML content directly
+        content: formData.content,
+      });
+
       console.log(res.data);
 
       setFormData({

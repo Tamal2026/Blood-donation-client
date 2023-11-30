@@ -15,7 +15,6 @@ import Dashboard from "./Components/Dashboard/Dashboard";
 import Statictics from "./Components/Dashboard/Statics/Statictics";
 import AllUsers from "./Components/Dashboard/AllUsers/AllUsers";
 import AdminHome from "./Components/Dashboard/AdminHOme/AdminHome";
-import UserHome from "./Components/Dashboard/UserHome/UserHome";
 import MyBloodDonation from "./Components/Dashboard/MyDonation/MyBloodDonation";
 import DonationReq from "./Components/Dashboard/DonationReq/DonationReq";
 import BloodDonationPublic from "./Pages/BloodDonationPublic/BloodDonationPublic";
@@ -82,10 +81,7 @@ const router = createBrowserRouter([
         path: "adminhome",
         element: <AdminHome></AdminHome>,
       },
-      {
-        path: "userhome",
-        element: <UserHome></UserHome>,
-      },
+      
       {
         path: "myBloodDonationRequest",
         element: <MyBloodDonation></MyBloodDonation>,

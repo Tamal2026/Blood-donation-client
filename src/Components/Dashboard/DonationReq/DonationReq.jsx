@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import UseAxiosPublic from "../../../Hooks/useAxiosPublic/UseAxiosPublic";
+import Swal from "sweetalert2";
 
 const DonationReq = () => {
   const axiosPublic = UseAxiosPublic();
+  const [districts, setDistricts] = useState([]);
+  const [upzilas, setUpzilas] = useState([]);
+  const [selectedDistrict, setSelectedDistrict] = useState("");
   const { register, handleSubmit } = useForm();
   const [formData, setFormData] = useState({
     recipientName: "",
@@ -12,16 +16,18 @@ const DonationReq = () => {
     date: "",
     time: "",
     reqmessage: "",
+    bloodGroup: "", 
   });
-  const [districts, setDistricts] = useState([]);
-  const [upzilas, setUpzilas] = useState([]);
-  const [selectedDistrict, setSelectedDistrict] = useState("");
+
   useEffect(() => {
     fetch("districts.json")
       .then((res) => res.json())
       .then((data) => {
         setDistricts(data);
         console.log("Districts Data:", data);
+      })
+      .catch((error) => {
+        console.error("Error fetching districts:", error);
       });
 
     fetch("upzilas.json")
@@ -29,12 +35,16 @@ const DonationReq = () => {
       .then((data) => {
         setUpzilas(data);
         console.log("Upzilas Data:", data);
+      })
+      .catch((error) => {
+        console.error("Error fetching upzilas:", error);
       });
   }, []);
 
   const handleDistrictChange = (e) => {
-    setSelectedDistrict(e.target.value);
-    console.log("Selected District:", e.target.value);
+    const selectedDistrictValue = e.target.value;
+    setSelectedDistrict(selectedDistrictValue);
+    console.log("Selected District:", selectedDistrictValue);
   };
 
   const handleInputChange = (e) => {
@@ -50,8 +60,17 @@ const DonationReq = () => {
       const datainfo = { ...formData, additionalField: "additionalValue" };
 
       const res = await axiosPublic.post("/bloodDonation", datainfo);
-      console.log(res.data);
+      if(res.data.insertedId){
+        Swal.fire({
+      
+          icon: "success",
+          title: "Donation Req Has Been saved",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
 
+      console.log("Response:", res.data); 
       setFormData({
         recipientName: "",
         hospitalName: "",
@@ -59,6 +78,7 @@ const DonationReq = () => {
         date: "",
         time: "",
         reqmessage: "",
+        bloodGroup: "",
       });
     } catch (error) {
       console.error("Error submitting data:", error);
@@ -76,7 +96,7 @@ const DonationReq = () => {
               in times of need. Join us in this noble cause and provide the gift
               of life. Every donation counts, bringing hope and support to those
               facing medical challenges. Your contribution matters — become a
-              blood donor today and make a difference in someone's life.
+              blood donor today and make a difference in somees life.
             </p>
           </div>
           <div className="mx-auto shadow-2xl bg-base-100 p-8">

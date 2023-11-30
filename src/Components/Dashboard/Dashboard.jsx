@@ -11,6 +11,9 @@ const Dashboard = () => {
           {isAdmin ? (
             <>
               <li>
+                <NavLink to="/">Main Home</NavLink>
+              </li>
+              <li>
                 <NavLink to="/dashboard/adminhome">Admin Home</NavLink>
               </li>
               <li>
@@ -22,9 +25,7 @@ const Dashboard = () => {
               <li>
                 <NavLink to="/dashboard/addblog">Add Blog</NavLink>
               </li>
-              <li>
-                <NavLink to="/dashboard/statistics">Statistics</NavLink>
-              </li>
+              
               <li>
                 <NavLink to="/dashboard/bloodDonationRequest">
                   Blood Donation Request
@@ -34,7 +35,7 @@ const Dashboard = () => {
           ) : (
             <>
               <li>
-                <NavLink to="/dashboard/userhome">Donor Home</NavLink>
+                <NavLink to="/">Main Home</NavLink>
               </li>
 
               <li>

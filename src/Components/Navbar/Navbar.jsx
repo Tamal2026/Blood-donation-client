@@ -6,34 +6,45 @@ const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
 
   const handleLogout = () => {
-
     logOut()
-    .then(()=>{
-
-    })
-    .catch(error =>console.log(error))
+      .then(() => {})
+      .catch((error) => console.log(error));
   };
 
   const navLinks = (
     <>
-      <li><NavLink to="/">Home</NavLink></li>
-      <li><NavLink to="/contactus">Contact Us</NavLink></li>
-      <li><NavLink to="/bloodDonationPublic">Donate Blood</NavLink></li>
-      <li><NavLink to="/blog">Blog</NavLink></li>
+      <li>
+        <NavLink to="/">Home</NavLink>
+      </li>
+      <li>
+        <NavLink to="/contactus">Contact Us</NavLink>
+      </li>
+      <li>
+        <NavLink to="/bloodDonationPublic">Blood Donation Req</NavLink>
+      </li>
+      <li>
+        <NavLink to="/blog">Blog</NavLink>
+      </li>
 
       {user ? (
         <>
-          <li><button onClick={handleLogout} className="btn btn-error">Logout</button></li>
-    
-          <li><NavLink to="/searchDonation">Search Donation</NavLink></li>
-        
+          <li>
+            <NavLink to="/searchDonation">Search Donation</NavLink>
+          </li>
+          <li>
+            <button onClick={handleLogout} className="">
+              Logout
+            </button>
+          </li>
         </>
-      
       ) : (
-        
         <>
-          <li><NavLink to="/register">Register</NavLink></li>
-          <li><NavLink to="/login">Login</NavLink></li>
+          <li>
+            <NavLink to="/login">Login</NavLink>
+          </li>
+          <li>
+            <NavLink to="/register">Register</NavLink>
+          </li>
         </>
       )}
     </>
@@ -70,11 +81,8 @@ const Navbar = () => {
           <a className="btn btn-ghost text-xl">VitalGifts</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            {navLinks}
-          </ul>
+          <ul className="menu menu-horizontal px-1">{navLinks}</ul>
         </div>
-       
       </div>
     </div>
   );

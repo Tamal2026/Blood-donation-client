@@ -12,22 +12,19 @@ const Register = () => {
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [bloodGroup, setBloodGroup] = useState("Select");
 
-
-
-
-
   useEffect(() => {
     fetch("districts.json")
       .then((res) => res.json())
       .then((data) => {
         setDistricts(data);
+        console.log(data);
       });
 
     fetch("upzilas.json")
       .then((res) => res.json())
       .then((data) => {
-   
         setUpzilas(data);
+        console.log(data);
       });
   }, []);
 
@@ -50,13 +47,21 @@ const Register = () => {
         return;
       }
 
+      // Find the selected district and upzila objects
+      const selectedDistrictObj = districts.find(
+        (district) => district.id === data.district
+      );
+      const selectedUpzilaObj = upzilas.find(
+        (upzila) => upzila.id === data.upzila
+      );
+
       const result = await createUser(
         data.email,
         data.password,
         data.name,
         data.bloodGroup,
-        data.district, 
-        data.upzila
+        selectedDistrictObj ? selectedDistrictObj.name : "",
+        selectedUpzilaObj ? selectedUpzilaObj.name : ""
       );
 
       const loggedUser = result.user;
@@ -66,8 +71,8 @@ const Register = () => {
         data.name,
         data.bloodGroup,
         data.email,
-        data.district, 
-        data.upzila 
+        selectedDistrictObj ? selectedDistrictObj.name : "",
+        selectedUpzilaObj ? selectedUpzilaObj.name : ""
       );
 
       console.log("User Updated");
@@ -76,8 +81,8 @@ const Register = () => {
         displayName: data.name,
         email: data.email,
         bloodGroup: data.bloodGroup,
-        district: data.district, 
-        upzila: data.upzila
+        district: selectedDistrictObj ? selectedDistrictObj.name : "",
+        upzila: selectedUpzilaObj ? selectedUpzilaObj.name : "",
       };
 
       const response = await axiosPublic.post("/users", userInfo);
