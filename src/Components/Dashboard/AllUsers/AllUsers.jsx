@@ -1,12 +1,18 @@
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import AxiosSecure from "../../AxiosSecure/AxiosSecure";
 import { MdDelete } from "react-icons/md";
 import { FaUsersCog } from "react-icons/fa";
 import Swal from "sweetalert2";
-import { useState } from "react";
 
 const AllUsers = () => {
   const AxiosSecuree = AxiosSecure();
+
+  const initialUserStatus =
+    JSON.parse(localStorage.getItem("userStatus")) || {};
+  const [userStatus, setUserStatus] = useState(initialUserStatus);
+  const [filterStatus, setFilterStatus] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
@@ -16,8 +22,9 @@ const AllUsers = () => {
     },
   });
 
-  const [userStatus, setUserStatus] = useState({});
-  const [filterStatus, setFilterStatus] = useState("all"); // "all", "active", "block"
+  useEffect(() => {
+    localStorage.setItem("userStatus", JSON.stringify(userStatus));
+  }, [userStatus]);
 
   const handleToggle = (userId) => {
     setUserStatus((prevUserStatus) => ({
@@ -66,6 +73,10 @@ const AllUsers = () => {
     });
   };
 
+  // Paginate users
+  const usersPerPage = 3;
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
   const filteredUsers = users.filter((user) => {
     if (filterStatus === "all") {
       return true;
@@ -73,6 +84,11 @@ const AllUsers = () => {
       return userStatus[user._id] === (filterStatus === "active");
     }
   });
+  const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
+
+  const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div>
@@ -89,8 +105,8 @@ const AllUsers = () => {
               value={filterStatus}
             >
               <option value="all">All</option>
-              <option value="active">Active</option>
-              <option value="block">Block</option>
+              <option value="active">Block</option>
+              <option value="block">Active</option>
             </select>
           </div>
           <table className="table table-zebra">
@@ -106,7 +122,7 @@ const AllUsers = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredUsers.map((user, index) => (
+              {currentUsers.map((user, index) => (
                 <tr key={user._id}>
                   <th>{index + 1}</th>
                   <td>{user.displayName}</td>
@@ -127,11 +143,11 @@ const AllUsers = () => {
                   <td>
                     <button
                       className={`font-semibold px-3 py-1 rounded-lg ${
-                        userStatus[user._id] ? "bg-green-500" : "bg-red-500"
+                        userStatus[user._id] ? "bg-red-500" : "bg-green-500"
                       } text-white`}
                       onClick={() => handleToggle(user._id)}
                     >
-                      {userStatus[user._id] ? "Active" : "Blocked"}
+                      {userStatus[user._id] ? "Block" : "Active"}
                     </button>
                   </td>
                   <td>
@@ -146,6 +162,40 @@ const AllUsers = () => {
               ))}
             </tbody>
           </table>
+
+          <div className="pagination">
+            {currentPage > 1 && (
+              <button
+                className={`btn btn-secondary mr-2`}
+                onClick={() => paginate(currentPage - 1)}
+                disabled={currentPage === 1}
+              >
+                Previous
+              </button>
+            )}
+            {Array.from({ length: totalPages }, (_, i) => (
+              <button
+                key={i + 1}
+                onClick={() => paginate(i + 1)}
+                className={`btn ${
+                  currentPage === i + 1 ? "btn-primary active" : ""
+                }`}
+              >
+                {i + 1}
+              </button>
+            ))}
+            <button
+              className={`btn ${
+                currentPage === totalPages
+                  ? " disabled"
+                  : "btn-primary"
+              } ml-2`}
+              onClick={() => paginate(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </div>

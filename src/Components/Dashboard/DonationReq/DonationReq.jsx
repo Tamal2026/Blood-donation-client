@@ -9,16 +9,6 @@ const DonationReq = () => {
   const [upzilas, setUpzilas] = useState([]);
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const { register, handleSubmit } = useForm();
-  const [formData, setFormData] = useState({
-    recipientName: "",
-    hospitalName: "",
-    address: "",
-    date: "",
-    time: "",
-    reqmessage: "",
-    bloodGroup: "", 
-  });
-
   useEffect(() => {
     fetch("districts.json")
       .then((res) => res.json())
@@ -40,6 +30,15 @@ const DonationReq = () => {
         console.error("Error fetching upzilas:", error);
       });
   }, []);
+  const [formData, setFormData] = useState({
+    recipientName: "",
+    hospitalName: "",
+    address: "",
+    date: "",
+    time: "",
+    reqmessage: "",
+    bloodGroup: "",
+  });
 
   const handleDistrictChange = (e) => {
     const selectedDistrictValue = e.target.value;
@@ -57,20 +56,23 @@ const DonationReq = () => {
 
   const onSubmit = async () => {
     try {
-      const datainfo = { ...formData, additionalField: "additionalValue" };
+      const datainfo = {
+        ...formData,
+        district: selectedDistrict, // Include the selected district in the data
+        additionalField: "additionalValue",
+      };
 
       const res = await axiosPublic.post("/bloodDonation", datainfo);
-      if(res.data.insertedId){
+      if (res.data.insertedId) {
         Swal.fire({
-      
           icon: "success",
           title: "Donation Req Has Been saved",
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
         });
       }
 
-      console.log("Response:", res.data); 
+      console.log("Response:", res.data);
       setFormData({
         recipientName: "",
         hospitalName: "",
