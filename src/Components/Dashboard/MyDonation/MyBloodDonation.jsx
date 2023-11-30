@@ -9,7 +9,7 @@ const MyBloodDonation = ({ userEmail }) => {
     const fetchData = async () => {
       try {
         // Make a GET request to fetch blood donation data for a specific user
-        const response = await axios.get(`http://localhost:5000/bloodDonation/${userEmail}`);
+        const response = await axios.get(`https://blood-donation-server-green.vercel.app/bloodDonation/${userEmail}`);
 
         // Update the state with the fetched data
         setBloodDonationData(response.data);

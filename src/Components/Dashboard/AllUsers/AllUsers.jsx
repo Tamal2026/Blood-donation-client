@@ -186,9 +186,7 @@ const AllUsers = () => {
             ))}
             <button
               className={`btn ${
-                currentPage === totalPages
-                  ? " disabled"
-                  : "btn-primary"
+                currentPage === totalPages ? " disabled" : "btn-primary"
               } ml-2`}
               onClick={() => paginate(currentPage + 1)}
               disabled={currentPage === totalPages}

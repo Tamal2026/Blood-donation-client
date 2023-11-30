@@ -5,11 +5,12 @@ import SucessStories from "./Shared/SuccessStories/SucessStories";
 
 const Home = () => {
   return <div>
-<h1 className="text-red-500">Home</h1>
+
 <Banner></Banner>
+<Dashboard></Dashboard>
 <SucessStories></SucessStories>
 <ContactUs></ContactUs>
-<Dashboard></Dashboard>
+
   </div>;
 };
 

@@ -1,12 +1,14 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Components/Provider/AuthProvider";
 import { useContext } from "react";
 import app from "../../../Firebase/firebase.config";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import axios from "axios";
 
 const Login = () => {
+  const { user } = useContext(AuthContext);
   const { signIn } = useContext(AuthContext);
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const auth = getAuth(app);
 
   const googleProvider = new GoogleAuthProvider();
@@ -28,15 +30,35 @@ const navigate = useNavigate();
     };
     console.log(loginUser);
 
+    // ...
+
     signIn(email, password)
       .then((result) => {
         const loggedInUser = result.user;
         console.log(loggedInUser);
         const user = { email };
         console.log(user);
+        axios
+          .post(
+            "https://blood-donation-server-green.vercel.app/jwt",
+
+            user,
+            { withCredentials: true }
+          )
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.success) {
+              navigate(location?.state ? location.state : "/");
+            }
+          });
       })
       .catch((error) => console.error(error));
   };
+
+  if (user) {
+    return <Navigate to="/"></Navigate>;
+  }
+  // ...
 
   return (
     <div>
@@ -45,9 +67,11 @@ const navigate = useNavigate();
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold">Login now!</h1>
             <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
+              hank you for choosing to be a lifesaver! Our login page is your
+              gateway to making a meaningful impact on the lives of those in
+              need. As you enter this secure space, you are not just logging in;
+              you are opening the door to hope, compassion, and the opportunity
+              to save lives.
             </p>
           </div>
           <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -80,14 +104,6 @@ const navigate = useNavigate();
                 <button className="btn btn-primary">Login</button>
               </div>
 
-              <div>
-                <button
-                  onClick={googleSignIn}
-                  className="mt-2 bg-red-500 text-white px-2 py-1 rounded-lg"
-                >
-                  Google
-                </button>
-              </div>
               <Link to="/register">
                 <h1>
                   New Here? Go{" "}

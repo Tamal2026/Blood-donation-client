@@ -1,16 +1,14 @@
 /* eslint-disable react-refresh/only-export-components */
 import axios from "axios";
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../Provider/AuthProvider";
+
 
 export const useAxiosSecure = axios.create({
-  baseURL: 'http://localhost:5000'
+  baseURL: 'https://blood-donation-server-green.vercel.app'
 });
 
 const AxiosSecure = () => {
-  const navigate = useNavigate();
-  const { logOut } = useContext(AuthContext);
+  // const navigate = useNavigate();
+  // const { logOut } = useContext(AuthContext);
 
   useAxiosSecure.interceptors.request.use(
     function (config) {
@@ -31,8 +29,8 @@ const AxiosSecure = () => {
     async function (error) {
     //   console.log('Unauth', error);
       if (error.response && (error.response.status === 401 || error.response.status === 403)) {
-        await logOut();
-        navigate('/login');
+        // await logOut();
+        // navigate('/login');
       }
       return Promise.reject(error);
     }
