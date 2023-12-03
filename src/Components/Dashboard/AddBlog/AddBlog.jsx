@@ -31,7 +31,7 @@ const AddBlog = () => {
     try {
       const res = await axiosPublic.post("/Blogs", {
         ...formData,
-        // Store the HTML content directly
+
         content: formData.content,
       });
 

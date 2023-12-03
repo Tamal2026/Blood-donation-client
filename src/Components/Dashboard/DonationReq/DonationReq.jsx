@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import UseAxiosPublic from "../../../Hooks/useAxiosPublic/UseAxiosPublic";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const DonationReq = () => {
+  const { user } = useContext(AuthContext);
   const axiosPublic = UseAxiosPublic();
   const [districts, setDistricts] = useState([]);
   const [upzilas, setUpzilas] = useState([]);
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const { register, handleSubmit } = useForm();
+
   useEffect(() => {
     fetch("districts.json")
       .then((res) => res.json())
@@ -30,6 +33,7 @@ const DonationReq = () => {
         console.error("Error fetching upzilas:", error);
       });
   }, []);
+
   const [formData, setFormData] = useState({
     recipientName: "",
     hospitalName: "",
@@ -58,7 +62,8 @@ const DonationReq = () => {
     try {
       const datainfo = {
         ...formData,
-        district: selectedDistrict, // Include the selected district in the data
+        district: selectedDistrict,
+        email : user.email,
         additionalField: "additionalValue",
       };
 
@@ -100,6 +105,14 @@ const DonationReq = () => {
               facing medical challenges. Your contribution matters — become a
               blood donor today and make a difference in somees life.
             </p>
+            <div>
+
+              {user && (
+                <p className="text-center text-lg font-bold text-gray-500">
+                  Logged in as : {user.email}
+                </p>
+              )}
+            </div>
           </div>
           <div className="mx-auto shadow-2xl bg-base-100 p-8">
             <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>

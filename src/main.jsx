@@ -23,6 +23,8 @@ import Funding from "./Components/Dashboard/Funding/Funding";
 import AddBlog from "./Components/Dashboard/AddBlog/AddBlog";
 import SearchDonation from "./Pages/SearchDonation/SearchDonation";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
+import UserHome from "./Components/Dashboard/UserHome/UserHome";
+import AllDonationReq from "./Components/Dashboard/allDonation/AllDonationReq";
 
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
@@ -94,6 +96,14 @@ const router = createBrowserRouter([
       {
         path: "funding",
         element: <Funding></Funding>,
+      },
+      {
+        path: "userhome",
+        element: <UserHome></UserHome>
+      },
+      {
+        path: "alldonationrequest",
+        element: <AllDonationReq></AllDonationReq>
       },
     ],
   },

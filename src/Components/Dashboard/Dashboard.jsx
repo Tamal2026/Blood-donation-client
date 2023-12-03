@@ -1,60 +1,91 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import UseAdmin from "../useAdmin/UseAdmin";
+import { useState, useEffect, useContext } from "react";
+import axios from "axios"; // Assuming you use axios for API calls
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Dashboard = () => {
+  const { user } = useContext(AuthContext);
   const [isAdmin] = UseAdmin();
+  const [recentDonations, setRecentDonations] = useState([]);
+
+  useEffect(() => {
+    const fetchRecentDonations = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/bloodDonation");
+        setRecentDonations(response.data);
+      } catch (error) {
+        console.error("Error fetching recent donations:", error);
+      }
+    };
+
+    fetchRecentDonations();
+  }, []);
+
+  const loggedInUserRecentDonations = Array.isArray(recentDonations)
+    ? recentDonations.filter((donation) => donation.email === user?.email)
+    : [];
 
   return (
     <div className="flex">
       <div className="w-64 min-h-full bg-orange-400 font-bold text-white">
         <ul className="menu">
+          <li>
+            <NavLink to="/">Main Home</NavLink>
+          </li>
           {isAdmin ? (
             <>
-              <li>
-                <NavLink to="/">Main Home</NavLink>
-              </li>
               <li>
                 <NavLink to="/dashboard/adminhome">Admin Home</NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/allusers">All Users</NavLink>
               </li>
-          
-              <li>
-                <NavLink to="/dashboard/addblog">Add Blog</NavLink>
-              </li>
-              
-              <li>
-                <NavLink to="/dashboard/bloodDonationRequest">
-                  Blood Donation Request
+              <li className="mb-10">
+                <NavLink  to="/dashboard/alldonationrequest">
+                  All Donation Request
                 </NavLink>
               </li>
             </>
           ) : (
             <>
               <li>
-                <NavLink to="/">Main Home</NavLink>
+                <NavLink to="/dashboard/userhome">User Home</NavLink>
               </li>
-
-              <li>
+              <li >
                 <NavLink to="/dashboard/myBloodDonationRequest">
                   My Donation Request
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/donationReq">
-                  Donation Request
-                </NavLink>
+                <NavLink to="/dashboard/donationReq">Donation Request</NavLink>
               </li>
-              <li>
-                <NavLink to="/dashboard/funding">
-                 Give Funding
-                </NavLink>
-              </li>
+              <Link to="/dashboard/myBloodDonationRequest">
+            <button className="bg-green-600 text-white font-semibold  py-2 rounded-lg px-2 ml-6 mt-5">
+              View All My Request
+            </button>
+          </Link>
             </>
           )}
         </ul>
+        <div>
+          <h5 className="ml-4 ">Recent Donation</h5>
+          {loggedInUserRecentDonations.length > 0 ? (
+            <ul className="text-base font-normal ml-3">
+              {loggedInUserRecentDonations.slice(0, 3).map((donation) => (
+                <li key={donation._id}>
+                  {donation.bloodGroup} Blood donated {donation.amount} on{" "}
+                  {donation.date}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="mb-6">No recent donations</p>
+          )}
+         
+        </div>
       </div>
+
       <div className="flex-1">
         <Outlet />
       </div>

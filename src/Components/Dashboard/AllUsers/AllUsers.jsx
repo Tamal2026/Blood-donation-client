@@ -33,19 +33,21 @@ const AllUsers = () => {
     }));
   };
 
-  const handleMakeAdmin = (user) => {
-    AxiosSecuree.patch(`/users/admin/${user._id}`).then((res) => {
-      console.log(res.data);
-      if (res.data.modifiedCount > 0) {
-        refetch();
-        Swal.fire({
-          icon: "success",
-          title: "Success",
-          text: `${user.displayName} is an admin now`,
-          footer: '<a href="#">Why do I have this issue?</a>',
-        });
+  const handleMakeAdmin = (user, selectedRole) => {
+    AxiosSecuree.patch(`/users/${user._id}`, { role: selectedRole }).then(
+      (res) => {
+        console.log(res.data);
+        if (res.data.modifiedCount > 0) {
+          refetch();
+          Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: `${user.displayName} is now a ${selectedRole}`,
+            footer: '<a href="#">Why do I have this issue?</a>',
+          });
+        }
       }
-    });
+    );
   };
 
   const handleDelete = (user) => {
@@ -73,17 +75,20 @@ const AllUsers = () => {
     });
   };
 
-  // Paginate users
-  const usersPerPage = 3;
+  const usersPerPage = 5;
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
   const filteredUsers = users.filter((user) => {
     if (filterStatus === "all") {
       return true;
     } else {
-      return userStatus[user._id] === (filterStatus === "active");
+      return (
+        (userStatus[user._id] && filterStatus === "active") ||
+        (!userStatus[user._id] && filterStatus === "block")
+      );
     }
   });
+
   const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
 
   const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
@@ -110,7 +115,6 @@ const AllUsers = () => {
             </select>
           </div>
           <table className="table table-zebra">
-            {/* head */}
             <thead>
               <tr>
                 <th></th>
