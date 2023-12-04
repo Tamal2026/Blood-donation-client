@@ -32,10 +32,14 @@ const AllUsers = () => {
       [userId]: !prevUserStatus[userId],
     }));
   };
+  const handleMakeAdmin = (user) => {
+    const loggedInUserRole = "admin";
+    if (loggedInUserRole === "admin") {
+      const selectedRole = user.role === "admin" ? "volunteer" : "admin";
 
-  const handleMakeAdmin = (user, selectedRole) => {
-    AxiosSecuree.patch(`/users/${user._id}`, { role: selectedRole }).then(
-      (res) => {
+      AxiosSecuree.patch(`/users/admin/${user._id}`, {
+        role: selectedRole,
+      }).then((res) => {
         console.log(res.data);
         if (res.data.modifiedCount > 0) {
           refetch();
@@ -46,8 +50,38 @@ const AllUsers = () => {
             footer: '<a href="#">Why do I have this issue?</a>',
           });
         }
-      }
-    );
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Permission Denied",
+        text: "You do not have the required permission to make another user an admin.",
+      });
+    }
+  };
+  const handleMakeRole = (user, role) => {
+    const loggedInUserRole = "admin";
+
+    if (loggedInUserRole === "admin") {
+      AxiosSecuree.patch(`/users/admin/${user._id}`, { role }).then((res) => {
+        console.log(res.data);
+        if (res.data.modifiedCount > 0) {
+          refetch();
+          Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: `${user.displayName} is now a ${role}`,
+            footer: '<a href="#">Why do I have this issue?</a>',
+          });
+        }
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Permission Denied",
+        text: "You do not have the required permission to change the role of another user.",
+      });
+    }
   };
 
   const handleDelete = (user) => {
@@ -135,15 +169,23 @@ const AllUsers = () => {
                     {user.role === "admin" ? (
                       "Admin"
                     ) : (
-                      <button
-                        onClick={() => handleMakeAdmin(user)}
-                        className="text-lg bg-orange-600 text-white px-3 py-2 rounded-xl"
-                      >
-                        {" "}
-                        <FaUsersCog />
-                      </button>
+                      <>
+                        <button
+                          onClick={() => handleMakeAdmin(user, "admin")}
+                          className="text-lg bg-orange-600 text-white px-3 py-2 rounded-xl mr-2"
+                        >
+                          <FaUsersCog />
+                        </button>
+                        <button
+                          onClick={() => handleMakeRole(user, "volunteer")}
+                          className="text-lg bg-blue-600 text-white px-3 py-2 rounded-xl"
+                        >
+                          Volunteer
+                        </button>
+                      </>
                     )}
                   </td>
+
                   <td>
                     <button
                       className={`font-semibold px-3 py-1 rounded-lg ${

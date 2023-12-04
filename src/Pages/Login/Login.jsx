@@ -40,7 +40,7 @@ const Login = () => {
         console.log(user);
         axios
           .post(
-            "http://localhost:5000/jwt",
+            "https://blood-donation-server-green.vercel.app/jwt",
 
             user,
             { withCredentials: true }

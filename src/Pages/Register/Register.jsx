@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Components/Provider/AuthProvider";
 import { useForm } from "react-hook-form";
 import UseAxiosPublic from "../../Hooks/useAxiosPublic/UseAxiosPublic";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ const Register = () => {
         return;
       }
 
-      // Find the selected district and upzila objects
+   
       const selectedDistrictObj = districts.find(
         (district) => district.id === data.district
       );
@@ -90,7 +91,13 @@ const Register = () => {
       console.log(response.data);
       navigate("/");
       if (response?.data.insertedId) {
-        alert("User added");
+        Swal.fire({
+        
+          icon: "success",
+          title: "You Logged in Successfully",
+          showConfirmButton: false,
+          timer: 1500
+        });
       }
     } catch (error) {
       console.error(error);

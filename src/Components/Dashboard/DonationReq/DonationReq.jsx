@@ -191,7 +191,7 @@ const DonationReq = () => {
                   <span className="label-text">Select Your District</span>
                 </label>
                 <select
-                  {...register("district")}
+                  {...register("districts")}
                   onChange={handleDistrictChange}
                   className="select select-bordered w-full max-h-150 overflow-y-auto"
                 >
@@ -211,7 +211,7 @@ const DonationReq = () => {
                   <span className="label-text">Select Your Upazila</span>
                 </label>
                 <select
-                  {...register("upzila")}
+                  {...register("upzilas")}
                   className="select select-bordered w-full max-h-150 overflow-y-auto"
                 >
                   <option value="" disabled>

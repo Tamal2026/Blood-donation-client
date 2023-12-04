@@ -1,13 +1,14 @@
-const ShowUser = ({user}) => {
-  const { displayName } = user || {};
+
+
+const ShowUser = ({ user }) => {
+  const { name, email } = user || {};
+
   return (
     <div>
-      <h1 className="text-2xl ">
-        Hi Welcome :
-        <span className="font-medium text-2xl ml-3 mt-6 space-x-5">
-          {displayName}
-        </span>
-      </h1>
+      <h2>User Information</h2>
+      <p>Name: {name}</p>
+      <p>Email: {email}</p>
+      {/* Add more information about the user as needed */}
     </div>
   );
 };

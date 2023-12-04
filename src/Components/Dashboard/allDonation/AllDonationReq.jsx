@@ -11,7 +11,7 @@ const AllDonationReq = () => {
   useEffect(() => {
     const fetchAllDonations = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/bloodDonation");
+        const response = await axios.get("https://blood-donation-server-green.vercel.app/bloodDonation");
         setDonations(response.data);
       } catch (error) {
         console.error("Error fetching donations:", error);
@@ -26,7 +26,7 @@ const AllDonationReq = () => {
 
   return (
     <div>
-      <h2 className="bg-emerald-500 text-5xl px-4 py-4 text-white my-10 rounded-lg w-1/3 text-center font-bold mx-auto">
+      <h2 className="sm:w-1/2 bg-emerald-500 text-5xl px-4 py-4 text-white my-10 rounded-lg w-1/3 text-center font-bold mx-auto">
         All Blood Donations
       </h2>
       {loading ? (

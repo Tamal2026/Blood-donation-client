@@ -10,7 +10,7 @@ const MyBloodDonation = () => {
   useEffect(() => {
     const fetchRecentDonations = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/bloodDonation");
+        const response = await axios.get("https://blood-donation-server-green.vercel.app/bloodDonation");
         setRecentDonations(response.data);
       } catch (error) {
         console.error("Error fetching recent donations:", error);
@@ -60,7 +60,7 @@ const MyBloodDonation = () => {
           </div>
         </ul>
       ) : (
-        <p className="text-3xl font-bold text-center"> Sorry No recent donations</p>
+        <p className="text-3xl font-bold text-center"> Sorry No donation Request</p>
       )}
     </div>
   );

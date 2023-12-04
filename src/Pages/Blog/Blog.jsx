@@ -17,7 +17,7 @@ const Blog = () => {
         <div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             {
-                blogs?.map(blog =><ShowBlog key={blog.id} blog={blog}></ShowBlog>)
+                blogs?.map(blog =><ShowBlog key={blog._id} blog={blog}></ShowBlog>)
             }
             </div>
         </div>
