@@ -1,8 +1,10 @@
-# React + Vite
+* Server Side Repo : https://github.com/Tamal2026/Blood-Donation-server
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Feature apply in this project 
+* Admin , Volunteer and User Dashboard will be Differetnt,
+* Verify Admin by jwt token
+* Admin can do all the things want
+* Users and Volunteer has different restriction
+* user can search blood by group and Districs and Upzila
+* User can donate boold for helping other
+* User can see his/her donated blood history and recent blood donation
